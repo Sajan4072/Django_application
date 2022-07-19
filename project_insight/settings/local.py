@@ -1,6 +1,7 @@
 ''' local.py is supposed to be ignored while pushing into your repo but I have left it as it is for refrence purpose '''
 
 from .base import *
+import os 
 
 DATABASES={
 
@@ -14,3 +15,6 @@ DATABASES={
 
     }
 }
+
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, '../static')]
