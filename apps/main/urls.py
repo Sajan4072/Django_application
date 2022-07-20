@@ -4,5 +4,6 @@ from . import views
 # from .views import HomeView
 
 urlpatterns = [
-    path('',views.HomeView)
+    path('',views.HomeView),
+    path('calculate',views.CalculateView,name="calculate_fare")
 ]

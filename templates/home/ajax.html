@@ -1,0 +1,89 @@
+<script type="text/javascript">
+
+	  function FormError(msg, display) {
+        var myErrorDiv = document.getElementById("form-error")
+        if (display === true) {
+            //show error
+            myErrorDiv.setAttribute("class", "d-block alert alert-danger")
+            myErrorDiv.innerText = msg
+        } else {
+            //hide error
+            myErrorDiv.setAttribute("class", "d-none alert alert-danger")
+        }
+
+    }
+
+
+
+
+	function handleCalculateFromDidSubmit(event) {
+        event.preventDefault()
+            // console.log(event)
+        const myForm = event.target
+        const myFormData = new FormData(myForm)
+           
+        const url = myForm.getAttribute("action")
+        const method = myForm.getAttribute("method")
+            
+        const xhr = new XMLHttpRequest()
+        const responseType = "json"
+        xhr.responseType = responseType
+        xhr.open(method, url)
+        xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+
+        xhr.setRequestHeader("X-Requested-with", "XMLHttpRequest")
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+            	FormError("", false)
+                const ResultJson = xhr.response
+                    
+                const ResultElement = formatElement(ResultJson)
+                    
+                ContainerElement.innerHTML=ResultElement
+
+                myForm.reset()
+            } else if (xhr.status === 400) {
+                const errorJson = xhr.response
+                    
+                const contentError = errorJson.content
+                let contentErrorMsg;
+                if (contentError) {
+                    contentErrorMsg = contentError[0]
+                    if (contentErrorMsg) {
+                        handleTweetFormError(contentErrorMsg, true)
+                    } else {
+                        alert("An error occured. Please Enter the Inputs as per format")
+                    }
+                } else {
+                    alert("An error occured. Please Enter the Inputs as per format")
+
+                }
+                // console.log(contentErrorMsg)
+            } else if (xhr.status === 401) {
+                alert("An error occured. Please Enter the Inputs as per format")
+                
+            } else if (xhr.status === 403) {
+                alert("An error occured. Please Enter the Inputs as per format")
+                
+            } else if (xhr.status === 500) {
+                alert("An error occured. Please Enter the Inputs as per format")
+            }
+
+        }
+        xhr.onerror = function() {
+            alert("An error occured. Please Enter the Inputs as per format")
+        }
+        xhr.send(myFormData)
+    }
+
+    const CreateFormEle = document.getElementById("calculate")
+    CreateFormEle.addEventListener("submit", handleCalculateFromDidSubmit)
+
+    const ContainerElement = document.getElementById("result")
+
+    function formatElement(result) {
+        var formattedresult = result
+        return formattedresult
+    }
+
+</script>
