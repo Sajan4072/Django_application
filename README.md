@@ -30,9 +30,14 @@
 `python manage.py migrate --settings project_insight.settings.local`
 
 9-Run server\
-`python manage.py runserver --settings project_insight.settings.local`\
+`python manage.py runserver --settings project_insight.settings.local`
 
+## snippets of app
+![](snip2.PNG)
+![](snip1.PNG)
 
+9-Run tests(optional)\
+`python manage.py tests apps.main`
 
 
 
