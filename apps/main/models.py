@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 
-'''I have created this model incase if the fare charges are likely to change in the future so instead of changing the view's logic we cam simply change the fare data in DB.'''
+'''I have created this model incase if the fare charges are likely to change in the future so instead of changing the view's logic we cam simply change the fare data in DB or from admin pannel.'''
 class Fare(models.Model):
     time=models.TimeField(primary_key=True,auto_now=False,auto_now_add=False)
     service_charge = models.FloatField(max_length= 100)

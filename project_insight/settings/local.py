@@ -2,6 +2,7 @@
 
 from .base import *
 import os 
+from decouple import config
 
 DATABASES={
 
@@ -9,7 +10,7 @@ DATABASES={
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'insight',
         'USER': 'postgres',
-        'PASSWORD': 'x',
+        'PASSWORD': config('password'),
         'HOST': 'localhost',
         'PORT': '5432',
 
